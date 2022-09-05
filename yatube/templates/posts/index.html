@@ -2,7 +2,9 @@
 {% block title %}
   Последние обновления на сайте
 {% endblock title %}
-{% block content %} 
+{% block content %}
+  <h1>Последние обновления на сайте</h1>
+  <div class="container py-5">
   {% for post in posts %}
     <article>
       <ul>
@@ -20,4 +22,5 @@
     </article>
     {% if not forloop.last %}<hr>{% endif %}
   {% endfor %}
+  </div>
 {% endblock content %}
