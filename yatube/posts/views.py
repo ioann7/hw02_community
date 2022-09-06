@@ -7,10 +7,7 @@ from yatube.settings import POSTS_PER_PAGE
 def index(request):
     template = 'posts/index.html'
     posts = Post.objects.select_related(
-        'author'
-    ).select_related(
-        'group'
-    )[:POSTS_PER_PAGE]
+        'author', 'group')[:POSTS_PER_PAGE]
     context = {
         'posts': posts
     }
