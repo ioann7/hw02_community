@@ -1,13 +1,13 @@
 from django.shortcuts import render, get_object_or_404
+from django.conf import settings
 
 from .models import Post, Group
-from yatube.settings import POSTS_PER_PAGE
 
 
 def index(request):
     template = 'posts/index.html'
     posts = Post.objects.select_related(
-        'author', 'group')[:POSTS_PER_PAGE]
+        'author', 'group')[:settings.POSTS_PER_PAGE]
     context = {
         'posts': posts
     }
@@ -17,7 +17,7 @@ def index(request):
 def group_posts(request, slug):
     template = 'posts/group_list.html'
     group = get_object_or_404(Group, slug=slug)
-    posts = group.posts.all()[:POSTS_PER_PAGE]
+    posts = group.posts.all()[:settings.POSTS_PER_PAGE]
     context = {
         'group': group,
         'posts': posts,
